@@ -2,18 +2,27 @@ package ru.breev.market.common;
 
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Cart {
-    Set<Product> cart = new HashSet<Product>();
 
-    private void addToCart(Product product) {
+    List<Product> cart;
+
+    @PostConstruct
+    private void init() {
+        cart = new ArrayList<Product>();
+    }
+
+    public void addToCart(Product product) {
         this.cart.add(product);
     }
 
-    private void printAllProductsInCart() {
-        System.out.println(this.cart);
+    public void printAllProductsInCart() {
+        for (Product product : cart) {
+            System.out.printf("Title: %s \nPrice: %s", product.getTitle(), product.getCost().toString());
+        }
     }
 }
