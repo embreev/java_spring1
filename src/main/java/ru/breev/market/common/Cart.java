@@ -13,7 +13,7 @@ public class Cart {
         this.cart.add(product);
     }
 
-    private void printAllProducts() {
+    private void printAllProductsInCart() {
         System.out.println(this.cart);
     }
 }
