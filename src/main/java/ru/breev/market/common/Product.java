@@ -4,12 +4,12 @@ public class Product {
 
     private Long id;
     private String title;
-    private Float cost;
+    private Float price;
 
     public Product(Long id, String title, Float price) {
         this.id = id;
         this.title = title;
-        this.cost = price;
+        this.price = price;
     }
 
     public Long getId() {
@@ -20,7 +20,7 @@ public class Product {
         return title;
     }
 
-    public Float getCost() {
-        return cost;
+    public Float getPrice() {
+        return price;
     }
 }

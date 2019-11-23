@@ -22,7 +22,7 @@ public class Cart {
 
     public void printAllProductsInCart() {
         for (Product product : cart) {
-            System.out.printf("Title: %s \nPrice: %s", product.getTitle(), product.getCost().toString());
+            System.out.printf("Title: %s \nPrice: %s", product.getTitle(), product.getPrice().toString());
         }
     }
 }
