@@ -13,8 +13,8 @@ public class ProductService {
     ProductRepository productRepository;
 
     @Autowired
-    public void setPr(ProductRepository pr) {
-        this.productRepository = pr;
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     public List<Product> getAllProducts() {

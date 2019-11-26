@@ -25,8 +25,15 @@ public class ProductController {
     @GetMapping("/all")
     public String showAllProducts(Model model) {
         List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
+        model.addAttribute("all_products", products);
         return "all_products";
+    }
+
+    // http://localhost:8189/app/products/info/1
+    @RequestMapping(path = "/info/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Product getProductById(@PathVariable Long id) {
+        return productService.getProductById(id);
     }
 
 //    // POST http://localhost:8189/app/students/process_form
