@@ -33,4 +33,8 @@ public class ProductRepository {
         }
         return null;
     }
+
+    public void addProduct(Long id, String title, Float price) {
+        products.add(new Product(id, title, price));
+    }
 }

@@ -30,8 +30,8 @@ public class ProductController {
     }
 
     @GetMapping("/product")
-    public String showProduct(Model model) {
-        Product product = productService.getProductById(1L);
+    public String showProduct(Model model, Long id) {
+        Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         return "product";
     }
