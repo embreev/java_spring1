@@ -22,6 +22,19 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("/all")
+    public String showAllProducts(Model model) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "all_products";
+    }
+
+//    // POST http://localhost:8189/app/students/process_form
+//    @PostMapping("/process_form")
+//    public String processForm(@ModelAttribute("student") Student student) {
+//        return "student_form_result";
+//    }
+
 //    // GET http://localhost:8189/app/students/show_form
 //    @GetMapping("/show_form")
 //    public String showSimpleForm(Model model) {
