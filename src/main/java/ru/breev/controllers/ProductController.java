@@ -29,6 +29,13 @@ public class ProductController {
         return "all_products";
     }
 
+    @GetMapping("/product")
+    public String showProduct(Model model) {
+        Product product = productService.getProductById(1L);
+        model.addAttribute("product", product);
+        return "product";
+    }
+
     // http://localhost:8189/app/products/info/1
     @RequestMapping(path = "/info/{id}", method = RequestMethod.GET)
     @ResponseBody
