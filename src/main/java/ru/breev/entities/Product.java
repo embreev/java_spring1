@@ -4,9 +4,9 @@ public class Product {
 
     private Long id;
     private String title;
-    private Float price;
+    private Double price;
 
-    public Product(Long id, String title, Float price) {
+    public Product(Long id, String title, Double price) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -28,11 +28,11 @@ public class Product {
         this.title = title;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

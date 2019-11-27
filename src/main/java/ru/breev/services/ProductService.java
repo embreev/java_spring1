@@ -25,7 +25,7 @@ public class ProductService {
         return productRepository.getProductById(id);
     }
 
-    public void addProduct(Long id, String title, Float price) {
-        productRepository.addProduct(id, title, price);
+    public void addProduct(Product product) {
+        productRepository.addProduct(product);
     }
 }
