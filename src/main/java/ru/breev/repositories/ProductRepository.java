@@ -13,12 +13,12 @@ public class ProductRepository {
 
     @PostConstruct
     private void init() {
-        products = new ArrayList<>();
-        products.add(new Product(1L,"iPhone", 60.0));
-        products.add(new Product(2L,"Huawei", 25.0));
-        products.add(new Product(3L,"Xiaomi", 15.0));
-        products.add(new Product(4L,"Honor", 20.0));
-        products.add(new Product(5L,"Samsung", 30.0));
+//        products = new ArrayList<>();
+//        products.add(new Product(1L,"iPhone", 60.0));
+//        products.add(new Product(2L,"Huawei", 25.0));
+//        products.add(new Product(3L,"Xiaomi", 15.0));
+//        products.add(new Product(4L,"Honor", 20.0));
+//        products.add(new Product(5L,"Samsung", 30.0));
     }
 
     public List<Product> getAllProduct() {
