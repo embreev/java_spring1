@@ -38,6 +38,7 @@ public class ProductRepository {
         session = factory.getCurrentSession();
         session.beginTransaction();
         products = session.createQuery("SELECT * FROM Products products").getResultList();
+//        products = session.createQuery("SELECT * FROM Products products").list();
         session.getTransaction().commit();
         return products;
     }
