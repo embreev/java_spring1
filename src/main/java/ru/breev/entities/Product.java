@@ -1,12 +1,14 @@
 package ru.breev.entities;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 public class Product {
 
     private Long id;
     private String title;
-    private Double price;
+    private Integer price;
 
-    public Product(Long id, String title, Double price) {
+    public Product(Long id, String title, Integer price) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -28,11 +30,11 @@ public class Product {
         this.title = title;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }

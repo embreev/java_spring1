@@ -25,7 +25,7 @@ public class FormsController {
     }
 
     @RequestMapping(path = "/add_new_product_processing", method = RequestMethod.GET)
-    public String addProductProcessForm(Model model, @RequestParam String title, @RequestParam Double price) {
+    public String addProductProcessForm(Model model, @RequestParam String title, @RequestParam Integer price) {
         Product product = new Product((long) productService.getAllProducts().size() + 1, title, price);
         productService.addProduct(product);
         model.addAttribute("product", product);
