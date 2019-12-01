@@ -2,11 +2,12 @@ package ru.breev.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "products")
-public class Products implements Serializable {
-    private static final long serialVersionUID = -2750973356670718107L;
+@Table(name = "categories")
+public class Category implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +17,9 @@ public class Products implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "price")
-    private int price;
+//    @OneToMany(mappedBy = "category_id")
+    @Column(name = "category_id")
+    List<Product> products;
 
     public Long getId() {
         return id;
@@ -35,25 +37,15 @@ public class Products implements Serializable {
         this.title = title;
     }
 
-    public int getPrice() {
-        return price;
+    public Category() {
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Products() {
-    }
-
-    public Products(String title, int price) {
+    public Category(String title) {
         this.title = title;
-        this.price = price;
     }
 
     @Override
     public String toString() {
-        return String.format("Products [id = %d, title = %s, price = %d]", id, title, price);
+        return String.format("Customer [id = %d, title = %s]", id, title);
     }
 }
-

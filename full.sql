@@ -1,15 +1,26 @@
 BEGIN;
 
 DROP TABLE IF EXISTS products CASCADE;
-CREATE TABLE products (id bigserial PRIMARY KEY, title VARCHAR(255), price int);
-INSERT INTO products (title, price) VALUES
-('iPhone', 65),
-('Samsung', 50),
-('Xiaomi', 35),
-('Huawei', 40),
-('Honor', 25),
-('HTC', 25),
-('Sony', 35);
+CREATE TABLE products (id bigserial PRIMARY KEY, title VARCHAR(255), price int, category_id int
+REFERENCES categories (id));
+INSERT INTO products (title, price, category_id) VALUES
+('iPhone', 65, 1),
+('Samsung', 50, 1),
+('Xiaomi', 35, 1),
+('Huawei', 40, 1),
+('Honor', 25, 1),
+('HTC', 25, 1),
+('Sony', 35, 1),
+('Acer', 75, 2),
+('Asus', 95, 2),
+('HP', 80, 2),
+('Lenovo', 90, 2);
+
+DROP TABLE IF EXISTS categories CASCADE;
+CREATE TABLE categories (id bigserial PRIMARY KEY, title VARCHAR(255));
+INSERT INTO categories (title) VALUES
+('phone'),
+('notebook');
 
 DROP TABLE IF EXISTS customers CASCADE;
 CREATE TABLE customers (id bigserial PRIMARY KEY, fio VARCHAR(255));

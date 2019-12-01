@@ -4,7 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
-import ru.breev.entities.Products;
+import ru.breev.entities.Category;
+import ru.breev.entities.Product;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -12,8 +13,9 @@ import java.util.List;
 
 @Repository
 public class ProductRepository {
-    private List<Products> products;
-    Products product;
+    private List<Product> products;
+    Product product;
+    Category category;
     SessionFactory factory;
     Session session;
 
@@ -38,16 +40,16 @@ public class ProductRepository {
         factory.close();
     }
 
-    public List<Products> getAllProducts() {
+    public List<Product> getAllProducts() {
         session = factory.getCurrentSession();
         session.beginTransaction();
-        products = session.createQuery("SELECT products FROM Products products").getResultList();
-//        products = session.createQuery("SELECT * FROM Products products").list();
+        products = session.createQuery("SELECT products FROM Product products").getResultList();
+//        products = session.createQuery("SELECT * FROM Product products").list();
         session.getTransaction().commit();
         return products;
     }
 
-    public Products getProductById(Long id) {
+    public Product getProductById(Long id) {
 //        for (Product product : products) {
 //            if (product.getId()==id) {
 //                return product;
@@ -57,16 +59,23 @@ public class ProductRepository {
 
         session = factory.getCurrentSession();
         session.beginTransaction();
-        product = session.get(Products.class, id);
-        System.out.println(product);
+        product = session.get(Product.class, id);
         session.getTransaction().commit();
         return product;
     }
 
-    public void addProduct(Products product) {
+    public void addProduct(Product product) {
         session = factory.getCurrentSession();
         session.beginTransaction();
         session.save(product);
         session.getTransaction().commit();
+    }
+
+    public Category getCategoryById(Long id) {
+        session = factory.getCurrentSession();
+        session.beginTransaction();
+        category = session.get(Category.class, id);
+        session.getTransaction().commit();
+        return category;
     }
 }

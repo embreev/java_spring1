@@ -5,16 +5,15 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "orders")
-public class Orders implements Serializable {
-    private static final long serialVersionUID = -2750973356670718107L;
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @Column(name = "customer_id")
     private Long customer_id;
 
     @Column(name = "product_id")
@@ -55,10 +54,10 @@ public class Orders implements Serializable {
         this.cnt = cnt;
     }
 
-    public Orders() {
+    public Order() {
     }
 
-    public Orders(Long customer_id, Long product_id, Integer cnt) {
+    public Order(Long customer_id, Long product_id, Integer cnt) {
         this.customer_id = customer_id;
         this.product_id = product_id;
         this.cnt = cnt;

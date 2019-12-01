@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "customers")
-public class Customers implements Serializable {
-    private static final long serialVersionUID = -2750973356670718107L;
+public class Customer implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,16 +32,16 @@ public class Customers implements Serializable {
         this.fio = title;
     }
 
-    public Customers() {
+    public Customer() {
     }
 
-    public Customers(String fio) {
+    public Customer(String fio) {
         this.fio = fio;
     }
 
     @Override
     public String toString() {
-        return String.format("Customers [id = %d, fio = %s]", id, fio);
+        return String.format("Customer [id = %d, fio = %s]", id, fio);
     }
 }
 
