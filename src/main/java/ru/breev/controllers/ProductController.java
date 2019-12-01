@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.breev.entities.Product;
+import ru.breev.entities.Products;
 import ru.breev.services.ProductService;
 
 import java.util.Arrays;
@@ -24,14 +25,14 @@ public class ProductController {
 
     @GetMapping("/all")
     public String showAllProducts(Model model) {
-        List<Product> products = productService.getAllProducts();
+        List<Products> products = productService.getAllProducts();
         model.addAttribute("all_products", products);
         return "all_products";
     }
 
     @GetMapping("/product")
     public String showProduct(Model model, @RequestParam(name = "id", required = true) Long id) {
-        Product product = productService.getProductById(id);
+        Products product = productService.getProductById(id);
         model.addAttribute("product", product);
         return "product";
     }
@@ -39,7 +40,7 @@ public class ProductController {
     // http://localhost:8189/app/products/info/1
     @RequestMapping(path = "/info/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Product getProductById(@PathVariable Long id) {
+    public Products getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
 

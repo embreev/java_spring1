@@ -13,7 +13,8 @@ public class Orders implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "customer_id")
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Long customer_id;
 
     @Column(name = "product_id")

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.breev.entities.Product;
+import ru.breev.entities.Products;
 import ru.breev.services.ProductService;
 
 @Controller
@@ -26,7 +27,7 @@ public class FormsController {
 
     @RequestMapping(path = "/add_new_product_processing", method = RequestMethod.GET)
     public String addProductProcessForm(Model model, @RequestParam String title, @RequestParam Integer price) {
-        Product product = new Product((long) productService.getAllProducts().size() + 1, title, price);
+        Products product = new Products(title, price);
         productService.addProduct(product);
         model.addAttribute("product", product);
         return "product";

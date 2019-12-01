@@ -3,6 +3,7 @@ package ru.breev.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.breev.entities.Product;
+import ru.breev.entities.Products;
 import ru.breev.repositories.ProductRepository;
 
 import java.util.List;
@@ -17,15 +18,15 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
+    public List<Products> getAllProducts() {
         return productRepository.getAllProducts();
     }
 
-    public Product getProductById (Long id) {
+    public Products getProductById (Long id) {
         return productRepository.getProductById(id);
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(Products product) {
         productRepository.addProduct(product);
     }
 }
