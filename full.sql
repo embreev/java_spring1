@@ -30,7 +30,7 @@ INSERT INTO customers (fio) VALUES
 ('Sidorov');
 
 DROP TABLE IF EXISTS orders CASCADE;
-CREATE TABLE orders (id bigserial PRIMARY KEY, customer_id int, product_id int, cnt int);
+CREATE TABLE orders (id bigserial PRIMARY KEY, customer_id int REFERENCES customers(id), product_id int REFERENCES products(id), cnt int);
 INSERT INTO orders (customer_id, product_id, cnt) VALUES
 (1, 1, 1),
 (1, 2, 1),

@@ -2,6 +2,7 @@ package ru.breev.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -15,6 +16,14 @@ public class Customer implements Serializable {
 
     @Column(name = "fio")
     private String fio;
+
+    @ManyToMany
+    @JoinTable(
+            name = "orders",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 
     public Long getId() {
         return id;

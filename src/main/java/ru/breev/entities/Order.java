@@ -2,6 +2,7 @@ package ru.breev.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -62,5 +63,6 @@ public class Order implements Serializable {
         this.product_id = product_id;
         this.cnt = cnt;
     }
+
 }
 

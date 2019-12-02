@@ -16,5 +16,7 @@
 
         <mapping class="ru.breev.entities.Product"/>
         <mapping class="ru.breev.entities.Category"/>
+        <mapping class="ru.breev.entities.Customer"/>
+        <mapping class="ru.breev.entities.Order"/>
     </session-factory>
 </hibernate-configuration>
