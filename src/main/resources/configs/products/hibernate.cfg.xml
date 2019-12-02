@@ -15,5 +15,6 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="ru.breev.entities.Product"/>
+        <mapping class="ru.breev.entities.Category"/>
     </session-factory>
 </hibernate-configuration>

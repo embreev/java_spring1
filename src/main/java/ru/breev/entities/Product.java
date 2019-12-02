@@ -19,12 +19,12 @@ public class Product implements Serializable {
     @Column(name = "price")
     private int price;
 
-//    @ManyToOne
-//    @JoinColumn(name = "category_id")
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @Column(name = "category_id")
-    private int category_id;
+//    @Column(name = "category_id")
+//    private int category_id;
 
     public Long getId() {
         return id;
@@ -50,35 +50,36 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-//    public Category getCategory() {
-//        return category;
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+
+//    public int getCategory_id() {
+//        return category_id;
 //    }
 //
-//    public void setCategory(Category category) {
-//        this.category = category;
+//    public void setCategory_id(int category_id) {
+//        this.category_id = category_id;
 //    }
-
-
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
-    }
 
     public Product() {
     }
 
-    public Product(String title, int price, int category_id) {
+    public Product(String title, int price, Category category) {
         this.title = title;
         this.price = price;
-        this.category_id = category_id;
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        return String.format("Product [id = %d, title = %s, price = %d, category = %s]", id, title, price, category_id);
+//        return String.format("Product [id = %d, title = %s, price = %d, category = %s]", id, title, price, category_id);
+        return String.format("Product [id = %d, title = %s, price = %d, category = %s]", id, title, price, category.getTitle());
     }
 }
 

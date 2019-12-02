@@ -17,8 +17,8 @@ public class Category implements Serializable {
     @Column(name = "title")
     private String title;
 
-//    @OneToMany(mappedBy = "category_id")
-    @Column(name = "category_id")
+    @OneToMany(mappedBy = "category")
+//    @Column(name = "category_id")
     List<Product> products;
 
     public Long getId() {

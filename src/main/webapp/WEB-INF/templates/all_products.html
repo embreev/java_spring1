@@ -24,7 +24,7 @@
             <td th:text="${p.id}" />
             <td th:text="${p.title}" />
             <td th:text="${p.price}" />
-            <td th:text="${p.category_id}" />
+            <td th:text="${p.category.title}" />
             <td><a th:href="@{'/products/product?id=' + ${p.id}}">К товару</a></td>
         </tr>
         </tbody>
