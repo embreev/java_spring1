@@ -3,9 +3,11 @@ package ru.breev.repositories;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.breev.entities.Category;
 import ru.breev.entities.Product;
+import ru.breev.services.SessionService;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -16,32 +18,39 @@ public class ProductRepository {
     private List<Product> products;
     Product product;
     Category category;
-    SessionFactory factory;
+    SessionService sessionService;
+
+//    SessionFactory factory;
     Session session;
+//
+//    @PostConstruct
+//    private void init() {
+////        products = new ArrayList<>();
+////        products.add(new Product(1L,"iPhone", 60.0));
+////        products.add(new Product(2L,"Huawei", 25.0));
+////        products.add(new Product(3L,"Xiaomi", 15.0));
+////        products.add(new Product(4L,"Honor", 20.0));
+////        products.add(new Product(5L,"Samsung", 30.0));
+//
+//        factory = new Configuration()
+//                .configure("configs/common/hibernate.cfg.xml")
+//                .buildSessionFactory();
+//
+//        session = null;
+//    }
 
-    @PostConstruct
-    private void init() {
-//        products = new ArrayList<>();
-//        products.add(new Product(1L,"iPhone", 60.0));
-//        products.add(new Product(2L,"Huawei", 25.0));
-//        products.add(new Product(3L,"Xiaomi", 15.0));
-//        products.add(new Product(4L,"Honor", 20.0));
-//        products.add(new Product(5L,"Samsung", 30.0));
-
-        factory = new Configuration()
-                .configure("configs/products/hibernate.cfg.xml")
-                .buildSessionFactory();
-
-        session = null;
+    @Autowired
+    public void setSessionService(SessionService sessionService) {
+        this.sessionService = sessionService;
     }
 
     @PreDestroy
     private void destroy() {
-        factory.close();
+        sessionService.closeSession();
     }
 
     public List<Product> getAllProducts() {
-        session = factory.getCurrentSession();
+        session = sessionService.getCurrentSession();
         session.beginTransaction();
         products = session.createQuery("SELECT products FROM Product products").getResultList();
 //        products = session.createQuery("SELECT * FROM Product products").list();
@@ -57,7 +66,7 @@ public class ProductRepository {
 //        }
 //        return null;
 
-        session = factory.getCurrentSession();
+        session = sessionService.getCurrentSession();
         session.beginTransaction();
         product = session.get(Product.class, id);
         session.getTransaction().commit();
@@ -65,14 +74,14 @@ public class ProductRepository {
     }
 
     public void addProduct(Product product) {
-        session = factory.getCurrentSession();
+        session = sessionService.getCurrentSession();
         session.beginTransaction();
         session.save(product);
         session.getTransaction().commit();
     }
 
     public Category getCategoryById(Long id) {
-        session = factory.getCurrentSession();
+        session = sessionService.getCurrentSession();
         session.beginTransaction();
         category = session.get(Category.class, id);
         session.getTransaction().commit();
