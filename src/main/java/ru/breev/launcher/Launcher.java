@@ -4,18 +4,16 @@ import java.net.URL;
 import java.security.ProtectionDomain;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
+import ru.breev.PrepareDataApp;
 
 public class Launcher {
-    // Домашнее задание:
-    // 1. Заменить студентов на продукты +
-    // 2. Добавить возможность:
-    // - Добавления нового продукта через форму +
-    // - Отображение списка всех продуктов +
-    // - Отображение информации о продукте по его id +
-    // - * Переход со списка товаров на страницу конкретного продукта +
-    // - с возможностью его изменения -
 
     public static void main(String[] args) throws Exception {
+
+        //Init DB
+        PrepareDataApp pda = new PrepareDataApp();
+        pda.forcePrepareData();
+
         Server server = new Server(8189);
 
         ProtectionDomain domain = Launcher.class.getProtectionDomain();

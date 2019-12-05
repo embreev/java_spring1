@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.breev.entities.Category;
 import ru.breev.entities.Product;
 import ru.breev.services.ProductService;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Controller
 public class FormsController {
@@ -25,8 +28,9 @@ public class FormsController {
     }
 
     @RequestMapping(path = "/add_new_product_processing", method = RequestMethod.GET)
-    public String addProductProcessForm(Model model, @RequestParam String title, @RequestParam Double price) {
-        Product product = new Product((long) productService.getAllProducts().size() + 1, title, price);
+    public String addProductProcessForm(Model model, @RequestParam String title, @RequestParam Integer price, @RequestParam Long category_id) {
+        Product product = new Product(title, price, productService.getCategoryById(category_id));
+//        Product product = new Product(title, price, category_id);
         productService.addProduct(product);
         model.addAttribute("product", product);
         return "product";

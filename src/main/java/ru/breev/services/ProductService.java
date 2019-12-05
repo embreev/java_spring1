@@ -2,6 +2,7 @@ package ru.breev.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.breev.entities.Category;
 import ru.breev.entities.Product;
 import ru.breev.repositories.ProductRepository;
 
@@ -18,7 +19,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.getAllProduct();
+        return productRepository.getAllProducts();
     }
 
     public Product getProductById (Long id) {
@@ -27,5 +28,9 @@ public class ProductService {
 
     public void addProduct(Product product) {
         productRepository.addProduct(product);
+    }
+
+    public Category getCategoryById(Long id) {
+        return productRepository.getCategoryById(id);
     }
 }
