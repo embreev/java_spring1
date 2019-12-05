@@ -23,6 +23,7 @@ public class ProductRepository {
 //    SessionFactory factory;
     Session session;
 //
+//                 ====== От второго урока =======
 //    @PostConstruct
 //    private void init() {
 ////        products = new ArrayList<>();
