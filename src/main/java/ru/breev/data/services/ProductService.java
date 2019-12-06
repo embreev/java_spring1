@@ -5,12 +5,14 @@ import org.springframework.stereotype.Service;
 import ru.breev.data.entities.Product;
 import ru.breev.data.repositories.ProductRepository;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ProductService {
-    List<Product> tmpListProducts;
     ProductRepository productRepository;
 
     @Autowired
@@ -30,15 +32,16 @@ public class ProductService {
         productRepository.saveAndFlush(product);
     }
 
-    public List<Product> getProductMinPrice() {
-        return productRepository.findAll();
+    public List<Product> getProductsMinPrice() {
+        return productRepository.findAll().stream().sorted(Comparator.comparingInt(Product::getPrice)).collect(Collectors.toList());
     }
 
-    public List<Product> getProductMaxPrice() {
-        return productRepository.findAll();
+    public List<Product> getProductsMaxPrice() {
+        return productRepository.findAll().stream().sorted(Comparator.comparingInt(Product::getPrice).reversed()).collect(Collectors.toList());
     }
 
-    public List<Product> getMinMaxProducts() {
-        return productRepository.findAll();
+    public List<Product> getProductsMinMaxPrice() {
+        List<Product> tmpListProducts = Stream.of(getProductsMinPrice().get(0), getProductsMaxPrice().get(0)).collect(Collectors.toList());
+        return tmpListProducts;
     }
 }
