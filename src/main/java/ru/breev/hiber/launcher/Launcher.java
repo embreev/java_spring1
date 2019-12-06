@@ -1,4 +1,4 @@
-package ru.breev.launcher;
+package ru.breev.hiber.launcher;
 
 import java.net.URL;
 import java.security.ProtectionDomain;

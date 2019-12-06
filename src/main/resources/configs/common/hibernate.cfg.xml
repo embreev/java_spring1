@@ -14,9 +14,9 @@
         <property name="show_sql">true</property>
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="ru.breev.entities.Product"/>
-        <mapping class="ru.breev.entities.Category"/>
-        <mapping class="ru.breev.entities.Customer"/>
-        <mapping class="ru.breev.entities.Order"/>
+        <mapping class="ru.breev.hiber.entities.Product"/>
+        <mapping class="ru.breev.hiber.entities.Category"/>
+        <mapping class="ru.breev.hiber.entities.Customer"/>
+        <mapping class="ru.breev.hiber.entities.Order"/>
     </session-factory>
 </hibernate-configuration>

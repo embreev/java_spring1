@@ -1,4 +1,4 @@
-package ru.breev.controllers;
+package ru.breev.hiber.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,11 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.breev.entities.Category;
-import ru.breev.entities.Product;
-import ru.breev.services.ProductService;
-
-import javax.persistence.criteria.CriteriaBuilder;
+import ru.breev.hiber.entities.Product;
+import ru.breev.hiber.services.ProductService;
 
 @Controller
 public class FormsController {

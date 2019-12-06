@@ -1,15 +1,12 @@
-package ru.breev.repositories;
+package ru.breev.hiber.repositories;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.breev.entities.Category;
-import ru.breev.entities.Product;
-import ru.breev.services.SessionService;
+import ru.breev.hiber.entities.Category;
+import ru.breev.hiber.entities.Product;
+import ru.breev.hiber.services.SessionService;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.List;
 

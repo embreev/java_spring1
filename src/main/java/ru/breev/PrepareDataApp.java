@@ -20,7 +20,6 @@ public class PrepareDataApp {
             session = factory.getCurrentSession();
             session.beginTransaction();
             session.createNativeQuery(sql).executeUpdate();
-//            session.createSQLQuery(sql).executeUpdate();
             session.getTransaction().commit();
         } catch (IOException e) {
             e.printStackTrace();

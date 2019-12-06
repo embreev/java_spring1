@@ -1,4 +1,4 @@
-package ru.breev.configs;
+package ru.breev.data.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,9 +15,9 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories("ru.breev.repositories")
+@EnableJpaRepositories("ru.breev.data.repositories")
 @EnableTransactionManagement
-@ComponentScan("ru.breev")
+@ComponentScan("ru.breev.data")
 public class AppConfig {
     @Bean(name="dataSource")
     public DataSource getDataSource() {
@@ -47,7 +47,7 @@ public class AppConfig {
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         // Указание пакета, в котором будут находиться классы-сущности
-        factory.setPackagesToScan("ru.breev");
+        factory.setPackagesToScan("ru.breev.data");
 
         // Создание свойств для настройки Hibernate
         Properties jpaProperties = new Properties();

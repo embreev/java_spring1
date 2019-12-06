@@ -1,10 +1,10 @@
-package ru.breev.services;
+package ru.breev.hiber.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.breev.entities.Category;
-import ru.breev.entities.Product;
-import ru.breev.repositories.ProductRepository;
+import ru.breev.hiber.entities.Category;
+import ru.breev.hiber.entities.Product;
+import ru.breev.hiber.repositories.ProductRepository;
 
 import java.util.List;
 

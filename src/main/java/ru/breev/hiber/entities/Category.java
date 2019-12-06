@@ -1,4 +1,4 @@
-package ru.breev.entities;
+package ru.breev.hiber.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

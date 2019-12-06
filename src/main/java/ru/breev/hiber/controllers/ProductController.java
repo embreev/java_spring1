@@ -1,11 +1,11 @@
-package ru.breev.controllers;
+package ru.breev.hiber.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.breev.entities.Product;
-import ru.breev.services.ProductService;
+import ru.breev.hiber.entities.Product;
+import ru.breev.hiber.services.ProductService;
 
 import java.util.List;
 

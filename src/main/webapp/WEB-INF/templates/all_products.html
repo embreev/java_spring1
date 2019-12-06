@@ -5,10 +5,35 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Market</title>
+    <style>
+        body {
+          width: 300px;
+        }
+        h1, h3 {
+          text-align: center;
+        }
+        ul {
+          list-style: none;
+          display: flex;
+
+        }
+        li {
+          margin: 5px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Список товаров:</h1>
+    <div>
+        <h3>Фильтр</h3>
+        <ul>
+            <li><a th:href="@{/products/min}">min</a></li>
+            <li><a th:href="@{/products/max}">max</a></li>
+            <li><a th:href="@{/products/minmax}">minmax</a></li>
+        </ul>
+    </div>
+
     <table>
         <thead>
         <tr>
@@ -20,7 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="p : ${all_products}">
+        <tr th:each="p : ${products}">
             <td th:text="${p.id}" />
             <td th:text="${p.title}" />
             <td th:text="${p.price}" />

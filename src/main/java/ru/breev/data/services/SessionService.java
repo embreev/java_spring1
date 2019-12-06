@@ -1,11 +1,9 @@
-package ru.breev.services;
+package ru.breev.data.services;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Service
 public class SessionService {
