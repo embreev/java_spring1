@@ -1,6 +1,5 @@
 package ru.breev.market.controllers;
 
-import org.springframework.data.domain.Sort;
 import ru.breev.market.entites.Item;
 import ru.breev.market.services.ItemService;
 import ru.breev.market.utils.ItemFilter;
@@ -31,14 +30,20 @@ public class MarketController {
     @GetMapping("/")
     public String index(Model model, @RequestParam Map<String, String> params) {
         int pageIndex = 0;
+
         if (params.containsKey("p")) {
             pageIndex = Integer.parseInt(params.get("p")) - 1;
         }
-        Pageable pageRequest = PageRequest.of(pageIndex, 7);
-//        Sort sort =
-        ItemFilter itemFilter = new ItemFilter(params);
+
         ItemSort itemSort = new ItemSort(params);
+
+        System.out.println(itemSort.getSort());
+        Pageable pageRequest = PageRequest.of(pageIndex, 7, itemSort.getSort());
+
+        ItemFilter itemFilter = new ItemFilter(params);
+
         Page<Item> page = itemService.findAll(itemFilter.getSpec(), pageRequest);
+        System.out.println(page.getSort());
 
         List<String> categories = Arrays.stream(Item.Category.values()).map(Item.Category::name).collect(Collectors.toList());
 
