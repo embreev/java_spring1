@@ -13,17 +13,22 @@ public class ItemSort {
 
     public ItemSort(Map<String, String> map) {
         this.sortDefinition = new StringBuilder();
-        if (map.containsKey("id") && !map.get("id").isEmpty()) {
-            sortBy = Sort.by(Sort.Direction.ASC, "id");
+        if(map.containsKey("sort") && !map.get("sort").isEmpty()) {
+            if (map.get("sort").equals("id")) {
+                this.sortBy = Sort.by(Sort.Direction.ASC, "id");
+                sortDefinition.append("&sort=id");
+            }
+            if (map.get("sort").equals("title")) {
+                this.sortBy = Sort.by(Sort.Direction.ASC, "title");
+                sortDefinition.append("&sort=title");
+            }
+            if (map.get("sort").equals("price")) {
+                this.sortBy = Sort.by(Sort.Direction.ASC, "price");
+                sortDefinition.append("&sort=price");
+            }
+        } else {
+            this.sortBy = Sort.by(Sort.Direction.ASC, "id");
             sortDefinition.append("&sort=id");
-        }
-        if (map.containsKey("title") && !map.get("title").isEmpty()) {
-            sortBy = Sort.by(Sort.Direction.ASC, "title");
-            sortDefinition.append("&sort=title");
-        }
-        if (map.containsKey("price") && !map.get("price").isEmpty()) {
-            sortBy = Sort.by(Sort.Direction.ASC, "price");
-            sortDefinition.append("&sort=price");
         }
     }
 

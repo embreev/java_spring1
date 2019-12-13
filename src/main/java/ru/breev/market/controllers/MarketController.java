@@ -30,15 +30,20 @@ public class MarketController {
     @GetMapping("/")
     public String index(Model model, @RequestParam Map<String, String> params) {
         int pageIndex = 0;
+        boolean sortFlag = false;
 
         if (params.containsKey("p")) {
             pageIndex = Integer.parseInt(params.get("p")) - 1;
         }
 
+        if (params.containsKey("sort")) {
+            sortFlag = true;
+        }
+
         ItemSort itemSort = new ItemSort(params);
 
-        System.out.println(itemSort.getSort());
-        Pageable pageRequest = PageRequest.of(pageIndex, 7, itemSort.getSort());
+        Pageable pageRequest = (!sortFlag) ? PageRequest.of(pageIndex, 7) :
+                PageRequest.of(pageIndex, 7, itemSort.getSort());
 
         ItemFilter itemFilter = new ItemFilter(params);
 
