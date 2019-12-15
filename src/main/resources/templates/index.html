@@ -23,19 +23,23 @@
             <input class="form-control" th:value="${param.max_price}" name="max_price" type="number"
                    placeholder="Максимальная цена"/>
             <select class="form-control" name="category">
-                <option value=""></option>
+                <option value="">Фильтровать по</option>
                 <option th:each="c : ${categories}"
                         th:value="${c}"
-                        th:text="${c}">
+                        th:text="${c}"
+                        th:selected="${param.category != null && param.category.toString() == c}">
                 </option>
             </select>
+<!--            <span th:text="${param.category}"></span>-->
             <select class="form-control" name="sort">
-                <option value=""></option>
+                <option value="">Сортировать по</option>
                 <option th:each="s : ${sorting}"
                         th:value="${s}"
-                        th:text="${s}">
+                        th:text="${s}"
+                        th:selected="${param.sort != null && param.sort.toString() == s}">
                 </option>
             </select>
+<!--            <span th:text="${param.sort}"></span>-->
         </div>
         <br>
         <button type="submit" class="btn btn-warning">Показать</button>
