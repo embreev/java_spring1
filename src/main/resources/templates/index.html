@@ -22,7 +22,7 @@
                    placeholder="Минимальная цена"/>
             <input class="form-control" th:value="${param.max_price}" name="max_price" type="number"
                    placeholder="Максимальная цена"/>
-            <select class="form-control" name="category" th:filed="*{category}">
+            <select class="form-control" name="category">
                 <option value=""></option>
                 <option th:each="c : ${categories}"
                         th:value="${c}"
@@ -31,9 +31,10 @@
             </select>
             <select class="form-control" name="sort">
                 <option value=""></option>
-                <option value="id">Сортировать по идентификатору</option>
-                <option value="title">Сортировать по наименованию</option>
-                <option value="price">Сортировать по цене</option>
+                <option th:each="s : ${sorting}"
+                        th:value="${s}"
+                        th:text="${s}">
+                </option>
             </select>
         </div>
         <br>

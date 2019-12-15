@@ -14,6 +14,10 @@ public class Item {
         phone, notebook
     }
 
+    public enum Sorting {
+        id, title, price
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

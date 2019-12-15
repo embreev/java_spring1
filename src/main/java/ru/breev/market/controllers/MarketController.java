@@ -42,13 +42,14 @@ public class MarketController {
         ItemFilter itemFilter = new ItemFilter(params);
 
         Page<Item> page = itemService.findAll(itemFilter.getSpec(), pageRequest);
-        System.out.println(page.getSort());
 
         List<String> categories = Arrays.stream(Item.Category.values()).map(Item.Category::name).collect(Collectors.toList());
+        List<String> sorting = Arrays.stream(Item.Sorting.values()).map(Item.Sorting::name).collect(Collectors.toList());
 
         model.addAttribute("filterDef", itemFilter.getFilterDefinition());
         model.addAttribute("sortDef", itemSort.getSortDefinition());
         model.addAttribute("categories", categories);
+        model.addAttribute("sorting", sorting);
         model.addAttribute("page", page);
         return "index";
     }
