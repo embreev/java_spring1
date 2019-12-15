@@ -12,7 +12,12 @@ public class ItemSpecifications {
         return (Specification<Item>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.lessThanOrEqualTo(root.get("price"), value);
     }
 
-    public static Specification<Item> categoryEQ(Item.Category value) {
-        return (Specification<Item>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("category"), value);
+//    public static Specification<Item> categoryEQ(Item.Category value) {
+//        return (Specification<Item>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("category"), value);
+//    }
+
+    public static Specification<Item> categoryIdEquals(Long catId) {
+//        return (Specification<Item>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("category"), catId); // тоже работает
+        return (Specification<Item>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("category").get("id"), catId);
     }
 }

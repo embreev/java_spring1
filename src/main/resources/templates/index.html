@@ -25,20 +25,20 @@
             <select class="form-control" name="category">
                 <option value="">Фильтровать по</option>
                 <option th:each="c : ${categories}"
-                        th:value="${c}"
-                        th:text="${c}"
+                        th:value="${c.id}"
+                        th:text="${c.title}"
                         th:selected="${param.category != null && param.category.toString() == c}">
                 </option>
             </select>
 <!--            <span th:text="${param.category}"></span>-->
-            <select class="form-control" name="sort">
-                <option value="">Сортировать по</option>
-                <option th:each="s : ${sorting}"
-                        th:value="${s}"
-                        th:text="${s}"
-                        th:selected="${param.sort != null && param.sort.toString() == s}">
-                </option>
-            </select>
+<!--            <select class="form-control" name="sort">-->
+<!--                <option value="">Сортировать по</option>-->
+<!--                <option th:each="s : ${sorting}"-->
+<!--                        th:value="${s}"-->
+<!--                        th:text="${s}"-->
+<!--                        th:selected="${param.sort != null && param.sort.toString() == s}">-->
+<!--                </option>-->
+<!--            </select>-->
 <!--            <span th:text="${param.sort}"></span>-->
         </div>
         <br>
@@ -50,10 +50,10 @@
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-            <th>ID</th>
-            <th>Наименование товара</th>
-            <th>Категория</th>
-            <th>Цена</th>
+            <th><a th:href="@{'/?sort=id'}">ID</a></th>
+            <th><a th:href="@{'/?sort=title'}">Наименование товара</a></th>
+            <th><a th:href="@{'/?sort=cat'}">Категория</a></th>
+            <th><a th:href="@{'/?sort=price'}">Цена</a></th>
         </tr>
         </thead>
         <tbody>
@@ -64,8 +64,9 @@
                 <br>
                 <span th:text="${item.description}"/>
             </td>
-            <td th:text="${item.category}"/>
+            <td th:text="${item.category.title}"/>
             <td th:text="${item.price}"/>
+            <td><a class="btn btn-warning" th:href="@{/cart/add/}">+</a></td>
         </tr>
         </tbody>
     </table>

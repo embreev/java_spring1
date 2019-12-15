@@ -22,6 +22,10 @@ public class ItemSort {
                 this.sortBy = Sort.by(Sort.Direction.ASC, "title");
                 sortDefinition.append("&sort=title");
             }
+            if (map.get("sort").equals("cat")) {
+                this.sortBy = Sort.by(Sort.Direction.ASC, "cat");
+                sortDefinition.append("&sort=cat");
+            }
             if (map.get("sort").equals("price")) {
                 this.sortBy = Sort.by(Sort.Direction.ASC, "price");
                 sortDefinition.append("&sort=price");

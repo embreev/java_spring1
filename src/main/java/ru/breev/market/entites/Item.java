@@ -1,5 +1,6 @@
 package ru.breev.market.entites;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,21 +11,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "items")
 public class Item {
-    public enum Category {
-        phone, notebook
-    }
-
-    public enum Sorting {
-        id, title, price
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "category")
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(name = "title")

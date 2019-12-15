@@ -1,6 +1,8 @@
 package ru.breev.market.controllers;
 
+import ru.breev.market.entites.Category;
 import ru.breev.market.entites.Item;
+import ru.breev.market.services.CategoryService;
 import ru.breev.market.services.ItemService;
 import ru.breev.market.utils.ItemFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,12 @@ import java.util.stream.Collectors;
 @Controller
 public class MarketController {
     private ItemService itemService;
+    private CategoryService categoryService;
 
     @Autowired
-    public MarketController(ItemService itemService) {
+    public MarketController(ItemService itemService, CategoryService categoryService) {
         this.itemService = itemService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
@@ -43,13 +47,11 @@ public class MarketController {
 
         Page<Item> page = itemService.findAll(itemFilter.getSpec(), pageRequest);
 
-        List<String> categories = Arrays.stream(Item.Category.values()).map(Item.Category::name).collect(Collectors.toList());
-        List<String> sorting = Arrays.stream(Item.Sorting.values()).map(Item.Sorting::name).collect(Collectors.toList());
+        List<Category> categories = categoryService.getAll();
 
         model.addAttribute("filterDef", itemFilter.getFilterDefinition());
         model.addAttribute("sortDef", itemSort.getSortDefinition());
         model.addAttribute("categories", categories);
-        model.addAttribute("sorting", sorting);
         model.addAttribute("page", page);
         return "index";
     }

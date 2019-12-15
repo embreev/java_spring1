@@ -25,11 +25,11 @@ public class ItemFilter {
             spec = spec.and(ItemSpecifications.priceLEThan(maxPrice));
             filterDefinition.append("&max_price=").append(maxPrice);
         }
-        if (map.containsKey("category") && !map.get("category").isEmpty()) {
-            Item.Category category = Item.Category.valueOf(map.get("category"));
-            spec = spec.and(ItemSpecifications.categoryEQ(category));
-            filterDefinition.append("&category=").append(category);
-        }
+//        if (map.containsKey("category") && !map.get("category").isEmpty()) {
+//            Item.Category category = Item.Category.valueOf(map.get("category"));
+//            spec = spec.and(ItemSpecifications.categoryEQ(category));
+//            filterDefinition.append("&category=").append(category);
+//        }
     }
 
     public Specification<Item> getSpec() {
