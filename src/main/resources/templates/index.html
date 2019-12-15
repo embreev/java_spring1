@@ -23,14 +23,14 @@
             <input class="form-control" th:value="${param.max_price}" name="max_price" type="number"
                    placeholder="Максимальная цена"/>
             <select class="form-control" name="category" th:filed="*{category}">
-                <option value="" text=""></option>
+                <option value=""></option>
                 <option th:each="c : ${categories}"
                         th:value="${c}"
                         th:text="${c}">
                 </option>
             </select>
             <select class="form-control" name="sort">
-                <option value="" text=""></option>
+                <option value=""></option>
                 <option value="id">Сортировать по идентификатору</option>
                 <option value="title">Сортировать по наименованию</option>
                 <option value="price">Сортировать по цене</option>
@@ -47,12 +47,11 @@
         <tr>
             <th>ID</th>
             <th>Наименование товара</th>
+            <th>Категория</th>
             <th>Цена</th>
         </tr>
         </thead>
         <tbody>
-        <!--/*@thymesVar id="page" type="org.springframework.data.domain.Page<com.geekbrains.marketdemoa.entites.Item>"*/-->
-        <!--/*@thymesVar id="item" type="com.geekbrains.marketdemoa.entites.Item"*/-->
         <tr th:each="item : ${page.content}">
             <td th:text="${item.id}"/>
             <td>
@@ -60,6 +59,7 @@
                 <br>
                 <span th:text="${item.description}"/>
             </td>
+            <td th:text="${item.category}"/>
             <td th:text="${item.price}"/>
         </tr>
         </tbody>
