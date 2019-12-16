@@ -44,6 +44,7 @@
         <br>
         <button type="submit" class="btn btn-warning">Показать</button>
         <a class="btn btn-warning" th:href="@{'/?p=1'}">Сбросить</a>
+        <a class="btn btn-warning" th:href="@{/cart}">Корзина</a>
     </form>
     <br>
     <h3>Каталог товаров</h3>
@@ -66,7 +67,7 @@
             </td>
             <td th:text="${item.category.title}"/>
             <td th:text="${item.price}"/>
-            <td><a class="btn btn-warning" th:href="@{/cart/add/}">+</a></td>
+            <td><a class="btn btn-warning" th:href="@{'/cart/add/' + ${item.id}}">+</a></td>
         </tr>
         </tbody>
     </table>

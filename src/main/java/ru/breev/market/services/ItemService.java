@@ -20,4 +20,8 @@ public class ItemService {
     public Page<Item> findAll(Specification<Item> spec, Pageable pageable) {
         return itemRepository.findAll(spec, pageable);
     }
+
+    public Item findById(Long id) {
+        return itemRepository.getOne(id);
+    }
 }
