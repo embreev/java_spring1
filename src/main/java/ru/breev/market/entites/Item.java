@@ -1,10 +1,10 @@
 package ru.breev.market.entites;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Data
@@ -28,4 +28,18 @@ public class Item {
 
     @Column(name = "price")
     private int price;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id.equals(item.id) &&
+                title.equals(item.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title);
+    }
 }
