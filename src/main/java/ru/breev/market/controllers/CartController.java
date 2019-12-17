@@ -6,13 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.breev.market.Cart;
-import ru.breev.market.entites.Item;
 import ru.breev.market.services.CategoryService;
 import ru.breev.market.services.ItemService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class CartController {
