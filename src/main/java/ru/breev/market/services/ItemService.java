@@ -1,6 +1,5 @@
 package ru.breev.market.services;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import ru.breev.market.entites.Item;
 import ru.breev.market.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +36,7 @@ public class ItemService {
     }
 
     public void updateItem(Item item) {
+        itemRepository.saveAndFlush(item);
     }
 
     public void delItem(Item item) {
