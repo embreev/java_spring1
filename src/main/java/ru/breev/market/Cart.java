@@ -8,7 +8,6 @@ import ru.breev.market.services.ItemService;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class Cart {
@@ -26,7 +25,7 @@ public class Cart {
     }
 
     public List<Item> show() {
-        return cart;
+        return this.cart;
     }
 
     public void add(Long id) {
@@ -38,11 +37,9 @@ public class Cart {
     }
 
     public void remove(Long id) {
-        if (itemService.findById(id) != null) {
-            for (Item item : cart) {
-                if (itemService.findById(id).equals(item)) {
-                    cart.remove(item);
-                }
+        for (int i = 0; i < cart.size(); i++) {
+            if(cart.get(i).getId().equals(id)) {
+                cart.remove(i);
             }
         }
     }
