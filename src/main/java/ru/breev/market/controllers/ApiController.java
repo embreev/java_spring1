@@ -1,8 +1,10 @@
 package ru.breev.market.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.breev.market.entites.Item;
+import ru.breev.market.repositories.ItemRepository;
 import ru.breev.market.services.ItemService;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class ApiController {
     @GetMapping
     @ResponseBody
     public List<Item> getItems() {
-        return itemService.getAll();
+        return itemService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -35,14 +37,13 @@ public class ApiController {
         return item;
     }
 
-    @DeleteMapping
-    public void delItem(@RequestBody Item item) {
-        itemService.delItem(item);
+    @DeleteMapping("/{id}")
+    public void delItem(@PathVariable Long id) {
+        itemService.delItem(id);
     }
 
-    @PutMapping
-    public Item updateItem(@RequestBody Item item) {
-        itemService.updateItem(item);
-        return item;
+    @PutMapping("/{id}")
+    public void updateItem(@PathVariable Long id, @RequestBody Item item) {
+        itemService.updateItem(id, item);
     }
 }

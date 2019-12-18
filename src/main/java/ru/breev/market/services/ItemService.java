@@ -23,23 +23,29 @@ public class ItemService {
         return itemRepository.findAll(spec, pageable);
     }
 
-    public List<Item> getAll() {
+    public List<Item> findAll() {
         return itemRepository.findAll();
     }
 
     public Item findById(Long id) {
-        return itemRepository.getOne(id);
+        return itemRepository.findById(id).get();
     }
 
     public void addItem(Item item) {
         itemRepository.saveAndFlush(item);
     }
 
-    public void updateItem(Item item) {
-        itemRepository.saveAndFlush(item);
+    public void updateItem(Long id, Item item) {
+        itemRepository.findById(id).map(i -> {
+            i.setCategory(item.getCategory());
+            i.setTitle(item.getTitle());
+            i.setDescription(item.getDescription());
+            i.setPrice(item.getPrice());
+            return itemRepository.saveAndFlush(i);
+        });
     }
 
-    public void delItem(Item item) {
-        itemRepository.delete(item);
+    public void delItem(Long id) {
+        itemRepository.delete(itemRepository.getOne(id));
     }
 }
