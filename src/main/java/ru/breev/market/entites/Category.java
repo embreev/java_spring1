@@ -20,6 +20,7 @@ public class Category {
     @Column(name = "title")
     private String title;
 
-//    @OneToMany(mappedBy = "category")
-//    private List<Item> items;
+    @JsonBackReference
+    @OneToMany(mappedBy = "category")
+    private List<Item> items;
 }
