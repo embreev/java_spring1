@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Заготовка корзины</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Заготовка магазина</h1>
+
+    <h3>Каталог товаров</h3>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Наименование товара</th>
+            <th>Категория</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cart}">
+            <td th:text="${item.id}"/>
+            <td>
+                <span style="font-weight: bold" th:text="${item.title}"/>
+                <br>
+                <span th:text="${item.description}"/>
+            </td>
+            <td th:text="${item.category.title}"/>
+            <td th:text="${item.price}"/>
+            <td><a class="btn btn-warning" th:href="@{'/cart/remove/' + ${item.id}}">-</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="page-link" th:href="@{/}">BACK</a>
+
+</div>
+
+</body>
+</html>

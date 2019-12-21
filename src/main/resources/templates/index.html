@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Заготовка магазина</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Заготовка магазина</h1>
+
+    <h3>Фильтр</h3>
+    <form th:action="@{/}" method="GET">
+        <div class="input-group">
+            <input class="form-control" th:value="${param.min_price}" name="min_price" type="number"
+                   placeholder="Минимальная цена"/>
+            <input class="form-control" th:value="${param.max_price}" name="max_price" type="number"
+                   placeholder="Максимальная цена"/>
+            <select class="form-control" name="category">
+                <option value="">Фильтровать по</option>
+                <option th:each="c : ${categories}"
+                        th:value="${c.id}"
+                        th:text="${c.title}"
+                        th:selected="${param.category != null && param.category.toString() == c}">
+                </option>
+            </select>
+<!--            <span th:text="${param.category}"></span>-->
+<!--            <select class="form-control" name="sort">-->
+<!--                <option value="">Сортировать по</option>-->
+<!--                <option th:each="s : ${sorting}"-->
+<!--                        th:value="${s}"-->
+<!--                        th:text="${s}"-->
+<!--                        th:selected="${param.sort != null && param.sort.toString() == s}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--            <span th:text="${param.sort}"></span>-->
+        </div>
+        <br>
+        <button type="submit" class="btn btn-warning">Показать</button>
+        <a class="btn btn-warning" th:href="@{'/?p=1'}">Сбросить</a>
+        <a class="btn btn-warning" th:href="@{/cart}">Корзина</a>
+    </form>
+    <br>
+    <h3>Каталог товаров</h3>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th><a th:href="@{'/?sort=id'}">ID</a></th>
+            <th><a th:href="@{'/?sort=title'}">Наименование товара</a></th>
+            <th><a th:href="@{'/?sort=cat'}">Категория</a></th>
+            <th><a th:href="@{'/?sort=price'}">Цена</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${page.content}">
+            <td th:text="${item.id}"/>
+            <td>
+                <span style="font-weight: bold" th:text="${item.title}"/>
+                <br>
+                <span th:text="${item.description}"/>
+            </td>
+            <td th:text="${item.category.title}"/>
+            <td th:text="${item.price}"/>
+            <td><a class="btn btn-warning" th:href="@{'/cart/add/' + ${item.id}}">+</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{'/?p=' + ${page.previousOrFirstPageable().getPageNumber() + 1} + ${filterDef} + ${sortDef}}">PREV</a>
+            </li>
+            <li class="page-item" th:classappend="${page.getNumber() + 1 == i ? 'active' : ''}"
+                th:each="i : ${#numbers.sequence(1, page.getTotalPages())}">
+                <a class="page-link" th:text="${i}" th:href="@{'/?p=' + ${i} + ${filterDef} + ${sortDef}}"></a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{'/?p=' + ${page.nextOrLastPageable().getPageNumber() + 1} + ${filterDef} + ${sortDef}}">NEXT</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+</body>
+</html>
