@@ -2,7 +2,6 @@ package ru.breev.market.utils;
 
 import lombok.Getter;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 

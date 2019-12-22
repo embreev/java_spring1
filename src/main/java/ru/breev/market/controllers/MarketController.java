@@ -1,5 +1,6 @@
 package ru.breev.market.controllers;
 
+import org.springframework.web.bind.annotation.*;
 import ru.breev.market.entites.Category;
 import ru.breev.market.entites.Item;
 import ru.breev.market.services.CategoryService;
@@ -11,8 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.breev.market.utils.ItemSort;
 
 import java.util.List;
@@ -53,4 +52,20 @@ public class MarketController {
         model.addAttribute("page", page);
         return "index";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editItemForm(Model model, @PathVariable Long id) {
+        Item item = itemService.findById(id);
+        List<Category> categories = categoryService.getAll();
+        model.addAttribute("item", item);
+        model.addAttribute("categories", categories);
+        return "edit_item";
+    }
+
+    @PostMapping("/edit")
+    public String saveItem(@ModelAttribute(name = "item") Item item) {
+        itemService.addItem(item);
+        return "redirect:/";
+    }
+
 }
